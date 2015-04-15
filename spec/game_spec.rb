@@ -13,4 +13,8 @@ describe Game do
     game.start
     expect(output.string).to include("RRRR") 
   end
+  it "displays prompt for number of correct colours guessed" do
+    game.start
+    expect(output.string).to include(Game::CORRECT_COLOURS_PROMPT)
+  end
 end
