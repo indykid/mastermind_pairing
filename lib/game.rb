@@ -4,9 +4,9 @@ class Game
   WELCOME_MESSAGE = "Welcome to Mastermind!"
   CORRECT_COLOURS_PROMPT = "How many colours are correct?"
 
-  def initialize(output=$stdout)
+  def initialize(output=$stdout, ai=Ai.new)
     @output = output
-    @ai = Ai.new
+    @ai = ai
   end
   def start
     display(WELCOME_MESSAGE)
