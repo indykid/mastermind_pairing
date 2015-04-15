@@ -6,4 +6,5 @@ describe Game do
     game.start
     expect(output.string).to start_with(Game::WELCOME_MESSAGE)
   end
+
 end
