@@ -1,4 +1,5 @@
 require 'code_marker'
+
 class Game
   attr_reader :ai, :current_correct, :current_exact
 
@@ -9,14 +10,16 @@ class Game
   def initialize(output=$stdout, ai=Ai.new)
     @output = output
     @ai = ai
+    @guesses = []
   end
 
   def start
     display(WELCOME_MESSAGE)
+    play
   end
 
   def play
-    display(ai.make_guess)
+    display(get_guess_from_ai)
     display(CORRECT_COLOURS_PROMPT)
     get_number_of_correct_colours
     display(EXACT_COLOURS_PROMPT)
@@ -31,6 +34,15 @@ class Game
     @current_exact = CodeMarker.score_guess_for_exact_colours
   end
 
+  def number_of_guesses
+    @guesses.length
+  end
+
+  def get_guess_from_ai
+    guess = ai.make_guess
+    @guesses << guess
+    guess
+  end
   private
   def display(message)
     @output.puts(message)

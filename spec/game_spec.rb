@@ -1,4 +1,5 @@
 require 'game'
+
 describe Game do
   class FakeAi
     def make_guess
@@ -10,9 +11,17 @@ describe Game do
   let(:fakeAi) { FakeAi.new }
   let(:game) { Game.new(output, ) }
 
-  it "displays welcome message" do
-    game.start
-    expect(output.string).to start_with(Game::WELCOME_MESSAGE)
+  describe "#start" do
+    it "displays welcome message" do
+      game.start
+      expect(output.string).to start_with(Game::WELCOME_MESSAGE)
+    end
+
+    it "adds a guess to guesses" do
+      expect(game.number_of_guesses).to eq(0)
+      game.start
+      expect(game.number_of_guesses).to eq(1)
+    end
   end
 
   it "has Ai player" do
@@ -60,6 +69,6 @@ describe Game do
       game.play
       expect(game.current_exact).to be_a(Fixnum)
     end
-
   end
+
 end
