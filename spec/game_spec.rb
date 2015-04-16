@@ -9,7 +9,7 @@ describe Game do
 
   let(:output) { StringIO.new }
   let(:fakeAi) { FakeAi.new }
-  let(:game) { Game.new(output, ) }
+  let(:game) { Game.new(output, fakeAi) }
 
   describe "#start" do
     it "displays welcome message" do
@@ -17,10 +17,10 @@ describe Game do
       expect(output.string).to start_with(Game::WELCOME_MESSAGE)
     end
 
-    it "adds a guess to guesses" do
+    it "calls'play' a maximum of 10 times" do
       expect(game.number_of_guesses).to eq(0)
       game.start
-      expect(game.number_of_guesses).to eq(1)
+      expect(game.number_of_guesses).to eq(10)
     end
   end
 

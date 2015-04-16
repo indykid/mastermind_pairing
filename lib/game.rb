@@ -15,7 +15,9 @@ class Game
 
   def start
     display(WELCOME_MESSAGE)
-    play
+    10.times do
+      play
+    end
   end
 
   def play
