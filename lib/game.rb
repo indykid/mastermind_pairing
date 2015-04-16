@@ -12,9 +12,14 @@ class Game
 
   def start
     display(WELCOME_MESSAGE)
+  end
+
+  def play
     display(ai.make_guess)
     display(CORRECT_COLOURS_PROMPT)
+    get_number_of_correct_colours
     display(EXACT_COLOURS_PROMPT)
+    get_number_of_exact_colours
   end
 
   def get_number_of_correct_colours

@@ -19,31 +19,6 @@ describe Game do
     expect(game.ai).to be
   end
 
-  it "displays the guess from Ai" do
-    game.start
-    expect(output.string).to include(fakeAi.make_guess) 
-  end
-
-  it "displays prompt for number of correct colours guessed" do
-    game.start
-    expect(output.string).to include(Game::CORRECT_COLOURS_PROMPT)
-  end
-
-  it "displays prompt for number of exact colours guessed" do
-    game.start
-    expect(output.string).to include(Game::EXACT_COLOURS_PROMPT)
-  end
-
-  it "gets number of correct matches" do
-    number_of_correct_guesses = game.get_number_of_correct_colours
-    expect(game.current_correct).to eq(number_of_correct_guesses)
-  end
-
-  it "gets number of exact matches" do
-    number_of_exact_colours = game.get_number_of_exact_colours
-    expect(game.current_exact).to eq(number_of_exact_colours)
-  end
-
   describe "#get_number_of_correct_colours" do
     it "returns a mark between 0 and 4" do
       number_of_correct_guesses = game.get_number_of_correct_colours
@@ -58,4 +33,33 @@ describe Game do
     end
   end
 
+  describe "#play" do
+    it "displays the guess from Ai" do
+      game.play
+      expect(output.string).to include(fakeAi.make_guess) 
+    end
+
+    it "displays prompt for number of correct colours guessed" do
+      game.play
+      expect(output.string).to include(Game::CORRECT_COLOURS_PROMPT)
+    end
+
+    it "gets number of correct matches" do
+      expect(game.current_correct).to be(nil)
+      game.play
+      expect(game.current_correct).to be_a(Fixnum)
+    end
+
+    it "displays prompt for number of exact colours guessed" do
+      game.play
+      expect(output.string).to include(Game::EXACT_COLOURS_PROMPT)
+    end
+
+    it "gets number of exact matches" do
+      expect(game.current_exact).to be(nil)
+      game.play
+      expect(game.current_exact).to be_a(Fixnum)
+    end
+
+  end
 end
