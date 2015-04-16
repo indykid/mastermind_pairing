@@ -1,3 +1,4 @@
+require 'code_marker'
 class Game
   attr_reader :ai, :current_correct, :current_exact
 
@@ -23,11 +24,11 @@ class Game
   end
 
   def get_number_of_correct_colours
-    @current_correct = [0, 1, 2, 3, 4].sample
+    @current_correct = CodeMarker.score_guess_for_correct_colours
   end
 
   def get_number_of_exact_colours
-    @current_exact = [0, 1, 2, 3, 4].sample
+    @current_exact = CodeMarker.score_guess_for_exact_colours
   end
 
   private
